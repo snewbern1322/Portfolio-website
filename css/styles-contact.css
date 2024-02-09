@@ -81,6 +81,7 @@ header {
     border-color: white;
 }
 
+
 .logo {
     font-size: 40px;
     font-weight: 2000;
@@ -98,7 +99,8 @@ header {
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     gap: 2rem;
-    background: linear-gradient(245.59deg, #7a76b9 0%, #000000 100%);
+    background: radial-gradient(circle, rgb(0, 187, 100), rgb(0, 0, 0));
+
     animation: animateBackground 6s ease-in-out infinite alternate;
 }
 .hero-text {

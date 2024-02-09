@@ -1,0 +1,265 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.bubbles {
+    position: relative;
+    display: flex;
+}
+.bubbles span {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    background: #68ffff;
+    margin: 0 45px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px 10px #2fb3ff, 0 0 50px 20px #6872ff, 0 0 100px 30px #68a4ff;
+    animation: animate 15s linear infinite;
+    animation-duration: calc(600s / var(--i));
+}
+
+
+
+html, body {
+    overscroll-behavior: none;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+    background: linear-gradient(245.59deg, #000000 0%, #2d56af 100%);
+    animation: animateBackground 6s ease-in-out infinite alternate;
+}
+
+header {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    display: flex;95
+    align-items: center;
+    justify-content: space-between;
+    padding: 33px 9%;
+    background: transparent;
+}
+
+.navlist {
+    display: flex;
+}
+
+.navlist a {
+    color: white;
+    margin-left: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 8px 12px; /* Adjust padding to create oval shape */
+    border: 1px solid transparent;
+    border-radius: 20px; /* Adjust border-radius to create oval shape */
+    transition: all .55s ease;
+}
+
+.navlist a:hover {
+    border-color: white;
+}
+
+.logo {
+    font-size: 40px;
+    font-weight: 2000;
+    color: rgb(255, 255, 255);
+}
+
+.hero {
+    color: white;
+    font-size: 18px;
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    
+}
+
+.hero .text {
+    position: relative;
+    z-index: 1;
+    text-align: right; /* Align text to the right */
+    grid-column: 2; /* Place the text in the second column */
+}
+
+section {
+    padding: 0 19%;
+}
+
+.text {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    font-size: 40px;
+    margin-bottom: 20px;
+    overflow: hidden; /* Ensures the content is hidden until the animation starts */
+    border-right: .15em solid white; /* Creates the typewriter cursor */
+    white-space: nowrap; /* Keeps the text on one line */
+    margin: 0 auto; /* Centers the text horizontally */
+    letter-spacing: .15em; /* Adjusts letter spacing */
+    animation: typing 2s steps(13), /* Adjust the duration and steps */
+               blink-caret 1s step-end infinite; /* Adjust the blink speed */
+}
+
+/* Typewriter animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 25%;
+    }
+}
+
+/* Cursor blink animation */
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: white;
+    }
+}
+
+
+.glassy-overlay,
+canvas,
+.hero-text {
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.5s;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+.icon-links {
+    margin-top: 10px; /* Adjust margin as needed */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    
+}
+
+/* Increase icon size */
+.icon-links a i {
+    font-size: 30px; /* Adjust icon size as needed */
+    margin-right: 15px; /* Add some space between icons */
+    color: white;
+    
+}
+/* Change icon color on hover */
+.icon-links a i:hover {
+    color: rgb(111, 162, 255);
+}
+/*--------------------------------flex cards--------------*/
+
+.flex-cards {
+    display: flex;
+    justify-content: flex-start; /* Align cards to the left */
+    margin-top: 50px; /* Adjust margin as needed */
+}
+
+.flex-card {
+    width: 150px; /* Adjust card width as needed */
+    height: 500px; /* Adjust card height as needed */
+    margin: 0 15px; /* Adjust spacing between cards */
+    text-align: center; /* Center content */
+    padding: 20px;
+    transition: all 0.5s ease; /* Smooth transition effect */
+    cursor: pointer;
+    border-radius: 70px; /* Adjust border-radius to round out the edges */
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+    overflow: hidden; /* Ensure image doesn't overflow */
+    position: relative; /* Required for absolutely positioned image */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5); /* Add shadow coming from the top */
+}
+
+
+.flex-card img {
+    width: 100%; /* Set the width of the image to 100% of its container */
+    height: 100%; /* Ensure the image maintains its aspect ratio */
+    position: absolute; /* Position the image absolutely */
+    top: 0; /* Position the image at the top of its container */
+    left: 0; /* Position the image at the left of its container */
+    bottom: 0; /* Position the image at the bottom of its container */
+    right: 0; /* Position the image at the right of its container */
+    object-fit: cover; /* Ensure the image fills its container while maintaining aspect ratio */
+    animation: pop-in 0.9s ease forwards;
+    opacity: 0;
+    transform: translateY(-50px);
+    font-size: 16px;
+    line-height: 1.4; /* Adjust line height as needed */
+    margin-bottom: 20px;
+    z-index: 1;
+
+}
+
+.flex-card:hover {
+    transform: scale(1.3);
+    box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.5), 0px 0px 20px 0px rgba(255, 255, 255, 0.5), 0px 10px 20px rgba(0, 0, 0, 0.5); 
+    width: 950px;
+}
+.flex-cards:hover .flex-card:not(:hover) {
+    filter: blur(8px); /* Apply blur effect to non-hovered cards */
+    transition: filter 0.5s ease; 
+    opacity: 0.7; /* Adjust opacity as needed */
+    transition: opacity 1s ease;
+}
+
+.flex-card h3 {
+    color: white; /* Adjust text color as needed */
+    z-index: 2; /* Ensure titles and descriptions appear above the images */
+    position: relative;
+    margin-top: 10px;
+    font-size: 18px;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.7);
+}
+
+.flex-card p {
+    color: white; /* Adjust text color as needed */
+    z-index: 2; /* Ensure titles and descriptions appear above the images */
+    position: relative;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+@keyframes pop-in {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

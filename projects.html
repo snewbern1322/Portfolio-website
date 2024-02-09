@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Portfolio Site</title>  
+
+    <!--html navigation links-->
+    <ul class="navlist">
+    
+    </ul>
+    
+    <!---custom css link-->
+    <link rel="stylesheet" type="text/css" href="css/styles-projects.css">
+
+    <!---boxicons link-->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <!---remicons link-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!--google fonts--->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--this is the top header menu part of the page-->
+    <header>
+        <a href="#" class="logo">My Portfolio</a>
+
+        <ul class="navlist">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="projects.html">My Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="aboutMe.html">About Me</a></li>
+        </ul>
+    </header>
+    
+    <!--welcome message on home page-->
+    <section class="hero">
+         <!-- Flex Cards Section -->
+    <section class="flex-cards">
+        <div class="flex-card" onclick="expandCard">
+            <img src="IMG_1.jpg" alt="something else">
+            <h3>Portfolio Website</h3>
+            
+        </div>
+        <div class="flex-card">
+            <img src="IMG_2.jpg" alt="something else">
+            <h3>Coin haven Application</h3>
+            
+        </div>
+        <div class="flex-card">
+            <img src="IMG_3.jpg" alt="something else">
+            <h3>Task Manager Application</h3>
+            
+        </div>
+        <!-- Add more flex cards as needed -->
+    </section>
+
+ 
+
+        <div>
+            <div class="text">My Personal Projects</div>
+            <p class="hero-text">Explore a compilation of my innovative projects, showcasing my proficiency and passion for computer science. From web development to software engineering, each project reflects my dedication to creating impactful solutions and pushing the boundaries of technology.
+                The applications and websites to the left  are my personal projects that I have created over time. They showcase what I am capable of in various languages and computational concepts.
+            </p>
+                
+            <div class="icon-links">
+                <a href="#"><i class="ri-github-fill"></i></a>
+            </div>
+        </div>
+        
+        
+        
+    </section>
+    
+
+    <!-- Scroll down icon -->
+    <div class="scroll-down">
+        <a href="#"><i class="ri-arrow-down-s-fill"></i></a>
+    </div>
+    
+    <!--custom js link-->
+    <script src="js/script.js"></script>
+
+    <script>
+        // Wait for the DOM content to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all the flex cards
+            const flexCards = document.querySelectorAll('.flex-card');
+    
+            // Add event listener to each flex card
+            flexCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    expandCard(card);
+                });
+            });
+        });
+    
+        function expandCard(card) {
+    // Hide other cards
+    const allCards = document.querySelectorAll('.flex-card');
+    allCards.forEach(c => {
+        if (c !== card) {
+            c.style.display = 'none';
+        }
+    });
+
+    // Hide "My Personal Projects" text and paragraph
+    document.querySelector('.text').style.display = 'none';
+    document.querySelector('.hero-text').style.display = 'none';
+    document.querySelector('.icon-links').style.display = 'none';
+
+    // Move the clicked card to the right side of the page
+    card.style.gridColumn = '2'; // Adjust to move the card to the second column
+
+    // Reset the card width and height
+    card.style.width = '150px'; // Adjust the original card width
+    card.style.height = '500px'; // Adjust the original card height
+
+    // Center card content vertically
+    const cardContent = card.querySelector('h3'); // Adjust the selector to target the title
+    cardContent.style.position = 'relative';
+    cardContent.style.top = '50%';
+    cardContent.style.transform = 'translateY(-50%)';
+}
+
+    </script>
+    
+    
+
+</body>
+</html>
