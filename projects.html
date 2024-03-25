@@ -23,6 +23,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+    <style>
+        /* Define a CSS class to enable scrolling */
+        .scrollable-body {
+            overflow-y: auto;
+        }
+    </style>
+
 </head>
 <body>
     <!--this is the top header menu part of the page-->
@@ -41,37 +49,62 @@
     <section class="hero">
          <!-- Flex Cards Section -->
     <section class="flex-cards">
-        <div class="flex-card" onclick="expandCard">
-            <img src="IMG_1.jpg" alt="something else">
+        <div class="flex-card" onclick="displayProjectInfo(this, 0)">
+            <video controls loop src="Testvid.mp4" width="500"
             <h3>Portfolio Website</h3>
             
         </div>
         <div class="flex-card">
-            <img src="IMG_2.jpg" alt="something else">
+            <video controls loop src="CoinHaven.mp4" width="500"
             <h3>Coin haven Application</h3>
             
         </div>
         <div class="flex-card">
-            <img src="IMG_3.jpg" alt="something else">
+            <video controls loop src="TASKGUI.mp4" width="500"
             <h3>Task Manager Application</h3>
             
         </div>
         <!-- Add more flex cards as needed -->
     </section>
 
+    <div class="project-info"  id="project-info-0" style="display: none;">
+        <h2>Portfolio Website</h2>
+        <p>This is a portfolio website project. I created this website to showcase my skills along with all of my current projects. It also provides insight
+            about my journey as a student in Computer Science with links to my socials and Github repositories to view all of the necessary source code. Like most
+            websites, I have created this site using HTML, CSS, and JavaScript for functionality
+        </p>
+    </div>
+    
+    <div class="project-info" id="project-info-1" style="display: none;">
+        <h2>"Coin Haven" Bank Management Application</h2>
+        <p>Developed a comprehensive bank application capable of tracking and managing user funds. This
+            includes adding, transferring, & spending funds with a desired checking's/savings account. It has an
+            interactive user interface that utilizes Java, FXML, & CSS implemented in the JavaFX framework.
+            </p>
+    </div>
+ 
+    <div class="project-info" id="project-info-2" style="display: none;">
+        <h2>Task Manager Application</h2>
+        <p>The Task Manager Application is a powerful tool designed to help users organize and streamline their tasks and activities efficiently. With its user-friendly interface and robust features, this application empowers individuals and teams to manage their workload effectively.
+        </p>
+    </div>
  
 
         <div>
             <div class="text">My Personal Projects</div>
-            <p class="hero-text">Explore a compilation of my innovative projects, showcasing my proficiency and passion for computer science. From web development to software engineering, each project reflects my dedication to creating impactful solutions and pushing the boundaries of technology.
+            <p class="hero-text">Explore a collection of my innovative projects, showcasing my proficiency and passion for computer science. From web development to software engineering, each project reflects my dedication to creating impactful solutions and pushing the boundaries of technology.
                 The applications and websites to the left  are my personal projects that I have created over time. They showcase what I am capable of in various languages and computational concepts.
             </p>
                 
             <div class="icon-links">
-                <a href="#"><i class="ri-github-fill"></i></a>
+                <a href="www.google.com" style="color: white"><i class="ri-github-fill"></i>Github</a>
             </div>
         </div>
         
+        <!-- Back button -->
+        <button class="back-button" style="display: none;" onclick="showAllProjects()">
+            <i class="bx bx-arrow-back"></i> Back to Projects
+        </button>
         
         
     </section>
@@ -88,44 +121,138 @@
     <script>
         // Wait for the DOM content to be fully loaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Get all the flex cards
             const flexCards = document.querySelectorAll('.flex-card');
-    
-            // Add event listener to each flex card
-            flexCards.forEach(card => {
+        
+            flexCards.forEach((card, index) => {
                 card.addEventListener('click', function() {
-                    expandCard(card);
+                    displayProjectInfo(card, index);
                 });
             });
         });
-    
-        function expandCard(card) {
-    // Hide other cards
-    const allCards = document.querySelectorAll('.flex-card');
-    allCards.forEach(c => {
-        if (c !== card) {
-            c.style.display = 'none';
+        
+    function displayProjectInfo(clickedCard, index) {
+            // Hide other cards
+            const allCards = document.querySelectorAll('.flex-card');
+            allCards.forEach(card => {
+                if (card !== clickedCard) {
+                    card.style.display = 'none';
+                }
+            });
+        
+            // Hide introduction paragraph and icon links
+            document.querySelector('.text').style.display = 'none';
+            document.querySelector('.hero-text').style.display = 'none';
+            document.querySelector('.icon-links').style.display = 'none';
+        
+            // Display project information
+            const projectInfo = document.getElementById(`project-info-${index}`);
+            projectInfo.style.display = 'block';
+        
+            // Show back button
+            document.querySelector('.back-button').style.display = 'block';
+        
+            // Remove animations and effects from clicked card
+            clickedCard.style.animation = 'none'; // Remove floating animation
+            clickedCard.style.boxShadow = 'none'; // Remove hover glow
+            clickedCard.style.opacity = '1'; // Restore opacity
+        
+            // Move the clicked card
+            clickedCard.style.position = 'relative'; // Set position to relative
+            clickedCard.style.top = '150px'; // Adjust top position as needed
+        
+            // Reset the card width and height
+            clickedCard.style.width = '900px'; // Adjust the original card width
+            clickedCard.style.height = '530px'; // Adjust the original card height
+        
+            // Add class to remove hover scaling effect
+            clickedCard.classList.add('clicked');
+        
+            // Remove blur effect from clicked card
+            clickedCard.classList.remove('blurred');
+        
+            // Center card content vertically
+            const cardContent = clickedCard.querySelector('h3'); // Adjust the selector to target the title
+            cardContent.style.position = 'relative';
+            cardContent.style.top = '50%';
+            cardContent.style.transform = 'translateY(-50%)';
+        
+            // Toggle the scrollable class on the body element
+            document.body.classList.toggle('scrollable-body');
         }
+        
+        // Function to reset card styles to their default values
+    function resetCardStyles() {
+            // Show intro paragraph, title, and cards
+            document.querySelector('.text').style.display = 'block';
+            document.querySelector('.hero-text').style.display = 'block';
+            document.querySelector('.icon-links').style.display = 'flex';
+        
+            // Hide project information
+            const projectInfo = document.querySelectorAll('.project-info');
+            projectInfo.forEach(info => {
+                info.style.display = 'none';
+            });
+        
+            // Hide back button
+            document.querySelector('.back-button').style.display = 'none';
+        
+            // Remove scrollable class from body
+            document.body.classList.remove('scrollable-body');
+        
+            // Show all cards
+            const flexCards = document.querySelectorAll('.flex-card');
+            flexCards.forEach(card => {
+                card.style.display = 'flex'; // Use flex display to ensure proper alignment
+                card.style.position = 'static'; // Reset card position
+                card.style.top = 'auto'; // Reset top position
+                card.style.left = 'auto'; // Reset left position
+                card.style.width = '210px'; // Reset width
+                card.style.height = '500px'; // Reset height
+            });
+
+            
+        }
+
+
+
+function showAllProjects() {
+    resetCardStyles(); // Reset card styles to their default values
+
+    // Show intro paragraph, title, and cards
+    document.querySelector('.text').style.display = 'block';
+    document.querySelector('.hero-text').style.display = 'block';
+    document.querySelector('.icon-links').style.display = 'flex';
+
+    // Hide project information
+    const projectInfo = document.querySelectorAll('.project-info');
+    projectInfo.forEach(info => {
+        info.style.display = 'none';
     });
 
-    // Hide "My Personal Projects" text and paragraph
-    document.querySelector('.text').style.display = 'none';
-    document.querySelector('.hero-text').style.display = 'none';
-    document.querySelector('.icon-links').style.display = 'none';
+    // Hide back button
+    document.querySelector('.back-button').style.display = 'none';
 
-    // Move the clicked card to the right side of the page
-    card.style.gridColumn = '2'; // Adjust to move the card to the second column
+    // Show all cards
+    const flexCards = document.querySelectorAll('.flex-card');
+    flexCards.forEach(card => {
+        card.style.display = 'flex'; // Use flex display to ensure proper alignment
+        card.style.position = 'relative'; // Reset card position
+        card.style.top = 'auto'; // Reset top position
+        card.style.left = 'auto'; // Reset left position
+        card.style.width = '210px'; // Reset width
+        card.style.height = '500px'; // Reset height
+    });
 
-    // Reset the card width and height
-    card.style.width = '150px'; // Adjust the original card width
-    card.style.height = '500px'; // Adjust the original card height
-
-    // Center card content vertically
-    const cardContent = card.querySelector('h3'); // Adjust the selector to target the title
-    cardContent.style.position = 'relative';
-    cardContent.style.top = '50%';
-    cardContent.style.transform = 'translateY(-50%)';
+    // Reset the video size and position
+    const video = document.querySelector('.flex-card video');
+    video.style.position = 'absolute'; // Set position to absolute to maintain layout
+    video.style.top = '0'; // Align to the top
+    video.style.left = '0'; // Align to the left
+    video.style.width = '100%'; // Reset width
+    video.style.height = '100%'; // Reset height
 }
+
+
 
     </script>
     

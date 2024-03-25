@@ -37,7 +37,7 @@ html, body {
     overscroll-behavior: none;
     height: 100%;
     overflow: hidden; /* Prevent scrolling */
-    background: linear-gradient(245.59deg, #000000 0%, #2d56af 100%);
+    background: linear-gradient(245.59deg, #000000 25%, #2836ff 100%);
     animation: animateBackground 6s ease-in-out infinite alternate;
 }
 
@@ -182,30 +182,69 @@ canvas,
     color: rgb(111, 162, 255);
 }
 /*--------------------------------flex cards--------------*/
+@keyframes floatAnimation {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-50px); /* Adjust the floating distance */
+    }
+  }
+  
+  /* Apply the animation to the flex cards */
+  .flex-card {
+    animation: floatAnimation 3s ease infinite; /* Adjust the animation duration as needed */
+  }
+  
+  /* Apply different animation delays to each flex card */
+  .flex-card:nth-child(1) {
+    animation-delay: 0s; /* No delay for the first card */
+  }
+  
+  .flex-card:nth-child(2) {
+    animation-delay: 0.5s; /* Delay the second card by 0.5 seconds */
+  }
+  
+  .flex-card:nth-child(3) {
+    animation-delay: 1s; /* Delay the third card by 1 second */
+  }
 
 .flex-cards {
     display: flex;
     justify-content: flex-start; /* Align cards to the left */
-    margin-top: 50px; /* Adjust margin as needed */
+    margin: 0 -200px; /* Remove any default margins */
+    padding: 0; /* Remove any default padding */
 }
 
 .flex-card {
-    width: 150px; /* Adjust card width as needed */
+    width: 210px; /* Adjust card width as needed */
     height: 500px; /* Adjust card height as needed */
     margin: 0 15px; /* Adjust spacing between cards */
     text-align: center; /* Center content */
-    padding: 20px;
+    padding: 70px;
     transition: all 0.5s ease; /* Smooth transition effect */
     cursor: pointer;
-    border-radius: 70px; /* Adjust border-radius to round out the edges */
+    border-radius: 50px; /* Adjust border-radius to round out the edges */
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
     overflow: hidden; /* Ensure image doesn't overflow */
     position: relative; /* Required for absolutely positioned image */
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5); /* Add shadow coming from the top */
+    animation: floatAnimation 5s ease infinite;
+}
+
+.flex-cards-container {
+    width: 100%; /* Set width to 100% to span the entire page */
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+    display: flex;
+    justify-content: flex-start; /* Align cards to the left */
+    margin: 0; /* Remove any default margins */
+    padding: 0; /* Remove any default padding */
 }
 
 
-.flex-card img {
+
+
+.flex-card video {
     width: 100%; /* Set the width of the image to 100% of its container */
     height: 100%; /* Ensure the image maintains its aspect ratio */
     position: absolute; /* Position the image absolutely */
@@ -227,10 +266,10 @@ canvas,
 .flex-card:hover {
     transform: scale(1.3);
     box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.5), 0px 0px 20px 0px rgba(255, 255, 255, 0.5), 0px 10px 20px rgba(0, 0, 0, 0.5); 
-    width: 950px;
+    /*width: 950px;*/
 }
 .flex-cards:hover .flex-card:not(:hover) {
-    filter: blur(8px); /* Apply blur effect to non-hovered cards */
+    filter: blur(6px); /* Apply blur effect to non-hovered cards */
     transition: filter 0.5s ease; 
     opacity: 0.7; /* Adjust opacity as needed */
     transition: opacity 1s ease;
@@ -263,3 +302,45 @@ canvas,
         transform: translateY(0);
     }
 }
+
+.back-button {
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.075);
+}
+
+.flex-card.clicked:hover {
+    transform: none !important; /* Override hover scaling effect */
+}
+
+.flex-card.clicked {
+    filter: none !important; /* Override blur effect */
+}
+
+.project-info {
+    position: relative;
+}
+
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; /* Adjust as needed */
+}
+
+.info-content {
+    margin-left: 50%; /* Adjust to match video container width */
+}
+

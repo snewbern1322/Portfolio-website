@@ -1,0 +1,195 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.bubbles {
+    position: relative;
+    display: flex;
+}
+.bubbles span {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    background: #8468ff;
+    margin: 0 45px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px 10px #da0000, 0 0 50px 20px #ff7b00, 0 0 100px 30px #ffbf0f;
+    animation: animate 15s linear infinite;
+    animation-duration: calc(700s / var(--i));
+}
+
+@keyframes animate {
+    0%
+    {
+        transform: translateY(100vh) scale(0);
+    }
+    100%
+    {
+        transform: translateY(-10vh) scale(1);
+    }
+}
+
+
+html, body {
+    overscroll-behavior: none;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+header {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 33px 9%;
+    background: transparent;
+}
+
+.navlist {
+    display: flex;
+}
+
+.navlist a {
+    color: white;
+    margin-left: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 8px 12px; /* Adjust padding to create oval shape */
+    border: 1px solid transparent;
+    border-radius: 20px; /* Adjust border-radius to create oval shape */
+    transition: all .55s ease;
+}
+
+.navlist a:hover {
+    border-color: white;
+}
+
+.logo {
+    font-size: 40px;
+    font-weight: 2000;
+    color: rgb(255, 255, 255);
+}
+
+.hero {
+    color: white;
+    font-size: 15px;
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 2rem;
+    background: linear-gradient(245.59deg, #ff6600 0%, #000000 100%);
+    animation: animateBackground 6s ease-in-out infinite alternate;
+}
+.hero-text {
+    position: relative;
+    z-index: 1;
+}
+
+section {
+    padding: 0 19%;
+}
+
+.text {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    font-size: 40px;
+    margin-bottom: 20px;
+    overflow: hidden; /* Ensures the content is hidden until the animation starts */
+    border-right: .15em solid white; /* Creates the typewriter cursor */
+    white-space: nowrap; /* Keeps the text on one line */
+    margin: 0 auto; /* Centers the text horizontally */
+    letter-spacing: .15em; /* Adjusts letter spacing */
+    animation: typing 2s steps(13), /* Adjust the duration and steps */
+               blink-caret 1s step-end infinite; /* Adjust the blink speed */
+}
+
+/* Typewriter animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 25%;
+    }
+}
+
+/* Cursor blink animation */
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: white;
+    }
+}
+
+
+.glassy-overlay,
+canvas,
+.hero-text {
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes animateBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.icon-links {
+    margin-top: 10px; /* Adjust margin as needed */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    
+}
+
+/* Increase icon size */
+.icon-links a i {
+    font-size: 30px; /* Adjust icon size as needed */
+    margin-right: 15px; /* Add some space between icons */
+    color: white;
+    
+}
+/* Change icon color on hover */
+.icon-links a i:hover {
+    color: rgb(111, 162, 255);
+}
